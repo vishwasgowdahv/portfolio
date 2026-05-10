@@ -78,6 +78,8 @@ export default function ProjectCard({ project, index, featured = false }) {
                 alignItems: 'center',
                 gap: '0.35rem',
                 transition: 'opacity 0.2s ease',
+                width: '80px',
+                height: '30px'
               }}
               onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
               onMouseLeave={e => e.currentTarget.style.opacity = '1'}
@@ -89,7 +91,7 @@ export default function ProjectCard({ project, index, featured = false }) {
           {/* Detail link */}
           <button
             onClick={() => navigate(`/projects/${project.id}`)}
-            style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: 'var(--muted)', background: 'none', border: 'none', cursor: 'none', transition: 'color 0.2s ease' }}
+            style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: 'var(--muted)', background: 'none', border: 'none', cursor: 'none', transition: 'color 0.2s ease', fontWeight: '700' }}
             onMouseEnter={e => e.target.style.color = 'var(--fg)'}
             onMouseLeave={e => e.target.style.color = 'var(--muted)'}
           >

@@ -13,7 +13,7 @@ export default function Projects() {
       <SectionHeading label="Work" title="Selected projects." />
 
       {/* Featured */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '4rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem', marginBottom: '4rem' }}>
         {featuredProjects.map((project, i) => (
           <ProjectCard key={project.id} project={project} index={i} featured />
         ))}
