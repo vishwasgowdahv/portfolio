@@ -59,13 +59,13 @@ export const featuredProjects = [
   {
     id: "recipe-book",
     title: "Recipe Book",
-    subtitle: "Recipe Book",
+    subtitle: "Meal Planning and Recipes App",
     description:
       "Recipe Book is a modern web application for discovering, saving, and organizing recipes which helps users explore recipes by category, search for specific dishes, and save their favorites",
     longDescription:
       "Recipe Book helps users explore recipes by category, search for specific dishes, and save their favorites. It features a clean, responsive interface with detailed recipe views and filtering options. Implemented with Node.js backend and Express REST API, with a MongoDB database for data storage. The frontend is built with React and TypeScript, providing a seamless user experience.",
     tags: ["React", "TypeScript", "MongoDB", "Node.js"],
-    type: "Web App",
+    type: "Full Stack MERN App",
     year: "2025",
     status: "Live",
     liveUrl: "https://recipe-api-frontend.netlify.app",
@@ -105,20 +105,15 @@ export const featuredProjects = [
 
 export const smallProjects = [
   {
-    id: "webshop",
-    title: "E-Commerce Webshop",
-    description:
-      "A full product listing, cart, and checkout flow with a MySQL backend and Express REST API.",
-    tags: ["React", "Node.js", "MySQL"],
-    year: "2023",
-  },
-  {
     id: "password-gen",
     title: "Password Generator",
     description:
       "A configurable password generator with strength meter, copy to clipboard, and custom character sets.",
     tags: ["React"],
     year: "2023",
+    liveUrl: "https://vishwasgowdahv.github.io/password_generator/",
+    githubUrl: "https://github.com/vishwasgowdahv/password_generator",
+    dockerUrl: null,
   },
   {
     id: "currency-tracker",
@@ -127,6 +122,20 @@ export const smallProjects = [
       "Live exchange rates fetched from a public API, with multi-currency comparison and historical charts.",
     tags: ["React", "REST API"],
     year: "2023",
+    liveUrl: "https://vishwasgowdahv.github.io/currency_converter/",
+    githubUrl: "https://github.com/vishwasgowdahv/currency_converter",
+    dockerUrl: null,
+  },
+  {
+    id: "webshop",
+    title: "E-Commerce Webshop",
+    description:
+      "A full product listing, cart, and checkout flow with a MySQL backend and Express REST API.",
+    tags: ["React", "Node.js", "MySQL"],
+    year: "2023",
+    liveUrl: null,
+    githubUrl: null,
+    dockerUrl: null,
   },
   {
     id: "dev-utilities",
@@ -135,6 +144,9 @@ export const smallProjects = [
       "A collection of small developer tools — base64 encoder, JSON formatter, color picker, and more.",
     tags: ["React", "JavaScript"],
     year: "2024",
+    liveUrl: null,
+    githubUrl: null,
+    dockerUrl: null,
   },
 ];
 
