@@ -16,7 +16,7 @@ export const personalInfo = {
 
 export const techStack = [
   { name: "React", category: "Frontend" },
-  { name: "JavaScript", category: "Frontend" },
+  { name: "JavaScript/TypeScript", category: "Frontend" },
   { name: "Tailwind CSS", category: "Frontend" },
   { name: "HTML / CSS", category: "Frontend" },
   { name: "Node.js", category: "Backend" },
