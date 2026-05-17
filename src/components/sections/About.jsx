@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 
 const ROLES = [
   { label: "Full-Stack Development", desc: "End-to-end web apps — APIs, UIs, databases" },
-  { label: "Backend Engineering",    desc: "Node.js, Express, auth, Docker, AWS" },
+  { label: "Backend Engineering",    desc: "Node.js, Express, auth, SQL/NoSQL" },
   { label: "Frontend Interfaces",    desc: "React, Tailwind CSS, clean UX" },
+  { label: "DevOps Engineering",    desc: "CI/CD, docker, kubernetes, AWS, GCP" },
 ];
 
 export default function About() {
