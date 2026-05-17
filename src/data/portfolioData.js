@@ -105,17 +105,6 @@ export const featuredProjects = [
 
 export const smallProjects = [
   {
-    id: "password-gen",
-    title: "Password Generator",
-    description:
-      "A configurable password generator with strength meter, copy to clipboard, and custom character sets.",
-    tags: ["React"],
-    year: "2023",
-    liveUrl: "https://vishwasgowdahv.github.io/password_generator/",
-    githubUrl: "https://github.com/vishwasgowdahv/password_generator",
-    dockerUrl: null,
-  },
-  {
     id: "currency-tracker",
     title: "Currency Exchange Tracker",
     description:
@@ -127,14 +116,14 @@ export const smallProjects = [
     dockerUrl: null,
   },
   {
-    id: "webshop",
-    title: "E-Commerce Webshop",
+    id: "password-gen",
+    title: "Password Generator",
     description:
-      "A full product listing, cart, and checkout flow with a MySQL backend and Express REST API.",
-    tags: ["React", "Node.js", "MySQL"],
+      "A configurable password generator with strength meter, copy to clipboard, and custom character sets.",
+    tags: ["React"],
     year: "2023",
-    liveUrl: null,
-    githubUrl: null,
+    liveUrl: "https://vishwasgowdahv.github.io/password_generator/",
+    githubUrl: "https://github.com/vishwasgowdahv/password_generator",
     dockerUrl: null,
   },
   {

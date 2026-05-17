@@ -12,9 +12,7 @@ export default function Home() {
     <>
       <Navbar />
       <main style={{ position: 'relative', zIndex: 2 }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', width: '100%' }}>
-          <Hero />
-        </div>
+        <Hero />
         <About />
         <TechStack />
         <Projects />

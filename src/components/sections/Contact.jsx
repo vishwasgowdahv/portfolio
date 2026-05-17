@@ -17,6 +17,7 @@ export default function Contact() {
       </motion.p>
 
       <motion.h2
+        className="contact-heading"
         initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
         style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(2.5rem,6vw,5.5rem)', color: 'var(--fg)', letterSpacing: '-0.03em', lineHeight: 1.0, marginBottom: '1.5rem' }}
@@ -34,6 +35,7 @@ export default function Contact() {
       </motion.p>
 
       <motion.div
+        className="contact-actions"
         initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
         style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '4rem' }}
       >
@@ -57,8 +59,9 @@ export default function Contact() {
 
       {/* Email pill */}
       <motion.div
+        className="contact-email-pill"
         initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}
-        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem 1.5rem', border: '1px solid var(--border)', borderRadius: '100px', background: 'var(--card)' }}
+        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem 1.5rem', border: '1px solid var(--border)', borderRadius: '100px', background: 'var(--card)', maxWidth: '100%' }}
       >
         <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4CAF50', boxShadow: '0 0 8px #4CAF5088', display: 'inline-block' }} />
         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: 'var(--muted)' }}>

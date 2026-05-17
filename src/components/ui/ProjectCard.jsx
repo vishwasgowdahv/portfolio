@@ -22,6 +22,7 @@ export default function ProjectCard({ project, index, featured = false }) {
         padding: featured ? "2.5rem" : "1.75rem",
         position: "relative",
         overflow: "hidden",
+        borderRadius: "10px",
       }}
     >
       {/* Top accent line */}
@@ -106,6 +107,7 @@ export default function ProjectCard({ project, index, featured = false }) {
           </span>
         )}
       </div>
+      
 
       <p
         style={{
@@ -148,6 +150,7 @@ export default function ProjectCard({ project, index, featured = false }) {
           ))}
         </ul>
       )}
+      
 
       {/* Footer: tags + action links */}
       <div
@@ -161,7 +164,7 @@ export default function ProjectCard({ project, index, featured = false }) {
       >
         <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
           {project.tags.map((tag) => (
-            <span key={tag} className="tech-tag">
+            <span key={tag} className="tech-tag" style={{fontSize: "0.65rem", borderRadius: "10px", backgroundColor: "#ebebeb", color: "#111111", padding: "0px 8px" }}>
               {tag}
             </span>
           ))}
@@ -182,7 +185,7 @@ export default function ProjectCard({ project, index, featured = false }) {
                 color: "var(--accent-fg)",
                 background: "var(--accent)",
                 padding: "5px 12px",
-                borderRadius: "2px",
+                borderRadius: "5px",
                 textDecoration: "none",
                 display: "inline-flex",
                 alignItems: "center",
@@ -210,17 +213,17 @@ export default function ProjectCard({ project, index, featured = false }) {
           <button
             onClick={() => navigate(`/projects/${project.id}`)}
             style={{
-              fontFamily: "Inter, sans-serif",
+              fontFamily: "JetBrains Mono, monospace",
               width: "80px",
               height: "30px",
               fontSize: "0.75rem",
-              color: "#444444",
-              background: "#f4f4f5",
+              color: "#f4f4f5",
+              background: "gray",
               border: "none",
-              borderRadius: "2px",
+              borderRadius: "5px",
               cursor: "none",
               transition: "color 0.2s ease",
-              fontWeight: "700",
+              fontWeight: "500",
             }}
             onMouseEnter={(e) => (e.target.style.color = "var(--fg)")}
             onMouseLeave={(e) => (e.target.style.color = "var(--muted)")}

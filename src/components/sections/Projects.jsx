@@ -19,6 +19,7 @@ export default function Projects() {
 
       {/* Featured */}
       <div
+        className="projects-featured-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
@@ -51,9 +52,10 @@ export default function Projects() {
 
       {/* Small grid */}
       <div
+        className="projects-small-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
           gap: "1rem",
         }}
       >
@@ -100,7 +102,7 @@ export default function Projects() {
             </p>
             <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
               {project.tags.map((tag) => (
-                <span key={tag} className="tech-tag">
+                <span key={tag} className="tech-tag" style={{fontSize: "0.65rem", borderRadius: "10px", backgroundColor: "#ebebeb", color: "#111111", padding: "0px 8px" }}>
                   {tag}
                 </span>
               ))}
@@ -120,7 +122,7 @@ export default function Projects() {
                       color: "var(--accent-fg)",
                       background: "var(--accent)",
                       padding: "5px 12px",
-                      borderRadius: "2px",
+                      borderRadius: "5px",
                       textDecoration: "none",
                       display: "inline-flex",
                       alignItems: "center",
@@ -160,7 +162,7 @@ export default function Projects() {
                       color: "#444444",
                       background: "#f4f4f5",
                       padding: "5px 12px",
-                      borderRadius: "2px",
+                      borderRadius: "5px",
                       textDecoration: "none",
                       display: "inline-flex",
                       alignItems: "center",

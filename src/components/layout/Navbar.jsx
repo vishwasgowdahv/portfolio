@@ -79,7 +79,7 @@ export default function Navbar() {
         </button>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex" style={{ gap: '2.5rem', alignItems: 'center' }}>
+        <div className="nav-desktop">
           {navLinks.map((link) => (
             <button
               key={link.label}
@@ -110,13 +110,14 @@ export default function Navbar() {
         </div>
 
         {/* Mobile: toggle + hamburger */}
-        <div className="flex md:hidden" style={{ gap: '0.75rem', alignItems: 'center' }}>
+        <div className="nav-mobile">
           <button className="theme-toggle" onClick={toggle} aria-label="Toggle theme">
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ background: 'none', border: 'none', cursor: 'none', display: 'flex', flexDirection: 'column', gap: '5px', padding: '4px' }}
+            aria-label="Toggle menu"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '5px', padding: '4px' }}
           >
             <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 7 : 0 }} style={{ display: 'block', width: '22px', height: '1px', background: 'var(--fg)' }} />
             <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} style={{ display: 'block', width: '22px', height: '1px', background: 'var(--fg)' }} />
@@ -137,7 +138,7 @@ export default function Navbar() {
                 key={link.label}
                 initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.05 * i }}
                 onClick={() => handleNavClick(link.href)}
-                style={{ fontFamily: 'Syne, sans-serif', fontSize: '2.5rem', fontWeight: 700, color: 'var(--fg)', background: 'none', border: 'none', cursor: 'none' }}
+                style={{ fontFamily: 'Syne, sans-serif', fontSize: '2.5rem', fontWeight: 700, color: 'var(--fg)', background: 'none', border: 'none', cursor: 'pointer' }}
               >
                 {link.label}
               </motion.button>

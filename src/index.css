@@ -171,8 +171,32 @@ body {
   align-items: center;
 }
 
-/* ─── Mobile responsiveness ──────────────────────────────── */
+/* ─── Navbar responsive show/hide (replaces Tailwind md:hidden / hidden md:flex) */
+.nav-desktop { display: flex; gap: 2.5rem; align-items: center; }
+.nav-mobile  { display: none; gap: 0.75rem; align-items: center; }
+
+/* ─── Tablet breakpoint (769px – 1024px) ────────────────── */
+@media (max-width: 1024px) {
+  /* Projects: allow 2-col on tablet but safe min */
+  .projects-featured-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  }
+  .projects-small-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  }
+
+  /* TechStack: compress category label column */
+  .tech-category-row {
+    grid-template-columns: 90px 1fr auto !important;
+  }
+}
+
+/* ─── Mobile responsiveness (≤ 768px) ───────────────────── */
 @media (max-width: 768px) {
+
+  /* Swap nav visibility */
+  .nav-desktop { display: none !important; }
+  .nav-mobile  { display: flex !important; }
 
   /* Hide custom cursor on touch devices */
   .cursor-dot, .cursor-ring { display: none; }
@@ -198,6 +222,7 @@ body {
     justify-content: center !important;
     box-sizing: border-box !important;
   }
+
   /* Hero availability badge: reposition on mobile */
   .hero-badge {
     position: static !important;
@@ -209,19 +234,42 @@ body {
   /* Section padding */
   section { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
 
+  /* About header: stack vertically */
+  .about-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
   /* About rows: hide slide-in description, simplify */
   .about-row-desc { display: none !important; }
   .about-row { flex-wrap: wrap !important; gap: 0.5rem !important; }
 
+  /* TechStack header: stack */
+  .stack-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+
   /* TechStack rows: stack vertically */
   .tech-category-row {
     grid-template-columns: 1fr !important;
-    gap: 0.6rem !important;
+    gap: 0.5rem !important;
+    padding: 1rem 0 !important;
   }
   .tech-category-row .tech-count { display: none !important; }
 
-  /* TechStack tech names: smaller on mobile */
-  .tech-name { font-size: 1rem !important; }
+  /* TechStack tech names: smaller on mobile, allow wrap */
+  .tech-name { font-size: 1rem !important; white-space: normal !important; }
+
+  /* Projects: single column on mobile */
+  .projects-featured-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .projects-small-grid {
+    grid-template-columns: 1fr !important;
+  }
 
   /* ProjectCard footer: stack */
   .card-footer {
@@ -239,12 +287,30 @@ body {
   /* Contact: reduce font */
   .contact-heading { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
 
+  /* Contact buttons: stack on mobile */
+  .contact-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .contact-actions a {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* Contact email pill: allow text to wrap / shrink */
+  .contact-email-pill {
+    max-width: 100% !important;
+    word-break: break-all !important;
+    flex-wrap: wrap !important;
+  }
+
   /* Footer */
   footer > div {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 1rem !important;
   }
+  footer { padding: 1.5rem 1.25rem !important; }
 
   /* Project detail: header */
   .detail-heading { font-size: clamp(2.5rem, 8vw, 4rem) !important; }
@@ -253,10 +319,20 @@ body {
   .detail-links {
     grid-template-columns: 1fr !important;
   }
+
+  /* Stack rows: full-width label */
+  .stack-row {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 @media (max-width: 480px) {
   .hero-bottom a { padding: 12px 16px !important; font-size: 0.82rem !important; }
   .project-links a, .project-links button { font-size: 0.75rem !important; }
+
+  /* Tighten section padding on very small phones */
+  section { padding-left: 1rem !important; padding-right: 1rem !important; }
+  nav { padding: 0.9rem 1rem !important; }
+  footer { padding: 1.25rem 1rem !important; }
 }
 
