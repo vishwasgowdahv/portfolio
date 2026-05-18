@@ -38,10 +38,11 @@ export default function Preloader({ onComplete }) {
             transition={{ duration: 1.6, ease: [0.76, 0, 0.24, 1] }}
           />
 
-          <div style={{ display: "flex", gap: "0.05em", overflow: "hidden" }}>
+          <div style={{ display: "flex", gap: "0.05em", overflow: "hidden", justifyContent: 'center'}}>
             {LETTERS.map((letter, i) => (
               <motion.span
                 key={i}
+                style={{ fontSize: "2.6rem" }}
                 className="preloader-letter"
                 initial={{ y: "110%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}

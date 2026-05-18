@@ -107,7 +107,6 @@ export default function ProjectCard({ project, index, featured = false }) {
           </span>
         )}
       </div>
-      
 
       <p
         style={{
@@ -150,7 +149,6 @@ export default function ProjectCard({ project, index, featured = false }) {
           ))}
         </ul>
       )}
-      
 
       {/* Footer: tags + action links */}
       <div
@@ -164,7 +162,15 @@ export default function ProjectCard({ project, index, featured = false }) {
       >
         <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
           {project.tags.map((tag) => (
-            <span key={tag} className="tech-tag" style={{fontSize: "0.65rem", borderRadius: "10px", backgroundColor: "#ebebeb", color: "#111111", padding: "0px 8px" }}>
+            <span
+              key={tag}
+              className="tech-tag"
+              style={{
+                fontSize: "0.65rem",
+                borderRadius: "10px",
+                padding: "0px 8px",
+              }}
+            >
               {tag}
             </span>
           ))}

@@ -14,7 +14,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      style={{ minHeight: '100svh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 'clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,3rem) clamp(3rem,6vw,5rem)', maxWidth: '1100px', margin: '0 auto', width: '100%', position: 'relative' }}
+      className="hero-section"
+      style={{ minHeight: '100svh', display: 'flex', flexDirection: 'column', padding: 'clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,3rem) clamp(3rem,6vw,5rem)', maxWidth: '1100px', margin: '0 auto', width: '100%', position: 'relative' }}
     >
       {/* Availability badge — repositioned via CSS on mobile */}
       <motion.div

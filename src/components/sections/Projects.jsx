@@ -102,84 +102,94 @@ export default function Projects() {
             </p>
             <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
               {project.tags.map((tag) => (
-                <span key={tag} className="tech-tag" style={{fontSize: "0.65rem", borderRadius: "10px", backgroundColor: "#ebebeb", color: "#111111", padding: "0px 8px" }}>
+                <span
+                  key={tag}
+                  className="tech-tag"
+                  style={{
+                    fontSize: "0.65rem",
+                    borderRadius: "10px",
+                    padding: "0px 8px",
+                  }}
+                >
                   {tag}
                 </span>
               ))}
-             
             </div>
-             <div style={{ marginTop: "1rem", display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
+            <div
+              style={{
+                marginTop: "1rem",
+                display: "flex",
+                gap: "0.4rem",
+                flexWrap: "wrap",
+              }}
+            >
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    fontFamily: "JetBrains Mono, monospace",
+                    fontSize: "0.60rem",
+                    letterSpacing: "0.08em",
+                    color: "var(--accent-fg)",
+                    background: "var(--accent)",
+                    padding: "5px 10px",
+                    borderRadius: "5px",
+                    textDecoration: "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                    transition: "opacity 0.2s ease",
+                    width: "75px",
+                    height: "25px",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  <span
                     style={{
-                      fontFamily: "JetBrains Mono, monospace",
-                      fontSize: "0.65rem",
-                      letterSpacing: "0.08em",
-                      color: "var(--accent-fg)",
-                      background: "var(--accent)",
-                      padding: "5px 12px",
-                      borderRadius: "5px",
-                      textDecoration: "none",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.35rem",
-                      transition: "opacity 0.2s ease",
-                      width: "80px",
-                      height: "30px",
+                      width: "5px",
+                      height: "5px",
+                      borderRadius: "50%",
+                      background: "#4CAF50",
+                      display: "inline-block",
                     }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.opacity = "0.85")
-                    }
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                  >
-                    <span
-                      style={{
-                        width: "5px",
-                        height: "5px",
-                        borderRadius: "50%",
-                        background: "#4CAF50",
-                        display: "inline-block",
-                      }}
-                    />
-                    LIVE ↗
-                  </a>
-                )}
+                  />
+                  LIVE ↗
+                </a>
+              )}
 
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                      fontFamily: "JetBrains Mono, monospace",
-                      fontSize: "0.65rem",
-                      letterSpacing: "0.08em",
-                      color: "#444444",
-                      background: "#f4f4f5",
-                      padding: "5px 12px",
-                      borderRadius: "5px",
-                      textDecoration: "none",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.35rem",
-                      transition: "opacity 0.2s ease",
-                      width: "90px",
-                      height: "30px",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.opacity = "0.85")
-                    }
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                  >
-                    GITHUB ↗
-                  </a>
-                )}
-              </div>
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    fontFamily: "JetBrains Mono, monospace",
+                    fontSize: "0.60rem",
+                    letterSpacing: "0.08em",
+                    color: "#444444",
+                    background: "#f4f4f5",
+                    padding: "5px 10px",
+                    borderRadius: "5px",
+                    textDecoration: "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                    transition: "opacity 0.2s ease",
+                    width: "75px",
+                    height: "25px",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  GITHUB ↗
+                </a>
+              )}
+            </div>
           </motion.div>
         ))}
       </div>

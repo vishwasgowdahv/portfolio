@@ -131,11 +131,14 @@ body {
 .tech-tag {
   font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
   letter-spacing: 0.04em; padding: 3px 10px;
-  border: 1px solid var(--border); border-radius: 2px;
+  border: 2px solid var(--border); border-radius: 2px;
   color: var(--muted); background: transparent;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 .tech-tag:hover { border-color: color-mix(in srgb, var(--accent) 60%, transparent); color: var(--accent); }
+
+/* ─── Hero section ──────────────────────────────────────── */
+.hero-section { justify-content: flex-end; }
 
 /* ─── Marquee ────────────────────────────────────────────── */
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -206,6 +209,9 @@ body {
   /* Navbar: tighten padding */
   nav { padding: 1rem 1.25rem !important; }
 
+  /* Hero: center content vertically on mobile */
+  .hero-section { justify-content: center !important; }
+
   /* Hero: stack bottom row vertically */
   .hero-bottom {
     flex-direction: column !important;
@@ -225,8 +231,6 @@ body {
 
   /* Hero availability badge: reposition on mobile */
   .hero-badge {
-    position: static !important;
-    display: flex !important;
     gap: 1.5rem !important;
     margin-bottom: 1.5rem !important;
   }
