@@ -275,6 +275,11 @@ body {
     grid-template-columns: 1fr !important;
   }
 
+  /* Coding profiles: single column on mobile */
+  .coding-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   /* ProjectCard footer: stack */
   .card-footer {
     flex-direction: column !important;

@@ -5,6 +5,7 @@ import About from '../components/sections/About';
 import TechStack from '../components/sections/TechStack';
 import Projects from '../components/sections/Projects';
 import Timeline from '../components/sections/Timeline';
+import CodingProfiles from '../components/sections/CodingProfiles';
 import Contact from '../components/sections/Contact';
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <About />
         <TechStack />
         <Projects />
+        <CodingProfiles />
         <Timeline />
         <Contact />
       </main>

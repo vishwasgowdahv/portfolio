@@ -38,7 +38,14 @@ export default function Preloader({ onComplete }) {
             transition={{ duration: 1.6, ease: [0.76, 0, 0.24, 1] }}
           />
 
-          <div style={{ display: "flex", gap: "0.05em", overflow: "hidden", justifyContent: 'center'}}>
+          <div
+            style={{
+              display: "flex",
+              gap: "0.05em",
+              overflow: "hidden",
+              justifyContent: "center",
+            }}
+          >
             {LETTERS.map((letter, i) => (
               <motion.span
                 key={i}
@@ -64,12 +71,28 @@ export default function Preloader({ onComplete }) {
               color: "var(--muted)",
               letterSpacing: "0.25em",
               marginTop: "1rem",
+              textAlign: "center",
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
           >
-            WEB APPLICATION DEVELOPER · AACHEN, GERMANY
+            WEB APPLICATION DEVELOPER
+          </motion.p>
+
+          <motion.p
+            style={{
+              fontFamily: "JetBrains Mono, monospace",
+              fontSize: "0.7rem",
+              color: "var(--muted)",
+              letterSpacing: "0.25em",
+              marginTop: "1rem",
+              textAlign: "center",
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >· AACHEN, GERMANY
           </motion.p>
         </motion.div>
       )}
