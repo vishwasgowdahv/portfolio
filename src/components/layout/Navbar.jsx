@@ -34,6 +34,7 @@ export default function Navbar() {
   const { theme, toggle } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -78,21 +79,8 @@ export default function Navbar() {
           VG<span style={{ color: 'var(--accent)' }}>.</span>
         </button>
 
-        {/* Desktop Links */}
-        <div className="nav-desktop">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => handleNavClick(link.href)}
-              className="animated-link"
-              style={linkStyle}
-              onMouseEnter={e => e.target.style.color = 'var(--fg)'}
-              onMouseLeave={e => e.target.style.color = 'var(--muted)'}
-            >
-              {link.label}
-            </button>
-          ))}
-
+        {/* Desktop Nav */}
+        <div className="nav-desktop" style={{ position: 'relative' }}>
           {/* GitHub */}
           <a
             href={personalInfo.github} target="_blank" rel="noopener noreferrer"
@@ -107,6 +95,61 @@ export default function Navbar() {
           <button className="theme-toggle" onClick={toggle} aria-label="Toggle theme">
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>
+
+          {/* Desktop Menu Icon */}
+          <button
+            onClick={() => setDesktopMenuOpen(!desktopMenuOpen)}
+            aria-label="Toggle navigation menu"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '5px', padding: '4px', marginLeft: '4px' }}
+          >
+            <motion.span animate={{ rotate: desktopMenuOpen ? 45 : 0, y: desktopMenuOpen ? 7 : 0 }} style={{ display: 'block', width: '22px', height: '1px', background: 'var(--fg)' }} />
+            <motion.span animate={{ opacity: desktopMenuOpen ? 0 : 1 }} style={{ display: 'block', width: '22px', height: '1px', background: 'var(--fg)' }} />
+            <motion.span animate={{ rotate: desktopMenuOpen ? -45 : 0, y: desktopMenuOpen ? -7 : 0 }} style={{ display: 'block', width: '22px', height: '1px', background: 'var(--fg)' }} />
+          </button>
+
+          {/* Desktop Dropdown Menu */}
+          <AnimatePresence>
+            {desktopMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                transition={{ duration: 0.2, ease: [0.76, 0, 0.24, 1] }}
+                style={{
+                  position: 'absolute', top: 'calc(100% + 16px)', right: 0,
+                  background: 'color-mix(in srgb, var(--bg) 96%, transparent)',
+                  border: '1px solid var(--border)',
+                  backdropFilter: 'blur(16px)',
+                  borderRadius: '6px',
+                  padding: '8px 0',
+                  minWidth: '140px',
+                  boxShadow: '0 8px 32px color-mix(in srgb, var(--fg) 8%, transparent)',
+                  zIndex: 200,
+                }}
+              >
+                {navLinks.map((link, i) => (
+                  <motion.button
+                    key={link.label}
+                    initial={{ opacity: 0, x: 8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.04 * i, duration: 0.18 }}
+                    onClick={() => { setDesktopMenuOpen(false); handleNavClick(link.href); }}
+                    style={{
+                      display: 'block', width: '100%', textAlign: 'left',
+                      fontFamily: 'Inter, sans-serif', fontSize: '0.85rem', fontWeight: 400,
+                      color: 'var(--muted)', background: 'none', border: 'none',
+                      padding: '10px 20px', letterSpacing: '0.04em',
+                      cursor: 'pointer', transition: 'color 0.2s ease, background 0.2s ease',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.color = 'var(--fg)'; e.currentTarget.style.background = 'color-mix(in srgb, var(--fg) 5%, transparent)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.color = 'var(--muted)'; e.currentTarget.style.background = 'none'; }}
+                  >
+                    {link.label}
+                  </motion.button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Mobile: toggle + hamburger */}
