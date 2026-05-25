@@ -5,8 +5,9 @@ import { personalInfo } from '../../data/portfolioData';
 
 const navLinks = [
   { label: 'About', href: '#about' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Work',  href: '#work'  },
+  { label: 'Tech Stack', href: '#stack' },
+  { label: 'Work', href: '#work' },
+  { label: 'Problem Solving', href: '#coding' },
   { label: 'Contact', href: '#contact' },
 ];
 
