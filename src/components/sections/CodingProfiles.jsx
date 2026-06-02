@@ -9,7 +9,7 @@ const platforms = [
     url: "https://leetcode.com/vishwasgowdahv",
     description: "Data structures, algorithms, and interview-focused problem solving.",
     stats: [
-      { label: "Problems", value: "200+" },
+      { label: "Problems", value: "230+" },
       { label: "Acceptance", value: "~71%" },
       { label: "Streak", value: "Active" },
     ],
