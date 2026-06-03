@@ -28,6 +28,7 @@ export const techStack = [
   { name: "JWT Auth", category: "Backend" },
   { name: "MySQL", category: "Database" },
   { name: "MongoDB", category: "Database" },
+  { name: "SQL", category: "Database" },
   { name: "Docker", category: "DevOps" },
   { name: "AWS", category: "DevOps" },
   { name: "Git / GitHub", category: "DevOps" },
