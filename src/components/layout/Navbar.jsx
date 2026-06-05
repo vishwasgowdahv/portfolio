@@ -85,7 +85,7 @@ export default function Navbar() {
           {/* GitHub */}
           <a
             href={personalInfo.github} target="_blank" rel="noopener noreferrer"
-            style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: 'var(--accent)', border: '1px solid color-mix(in srgb, var(--accent) 40%, transparent)', padding: '6px 14px', borderRadius: '2px', textDecoration: 'none', letterSpacing: '0.08em', transition: 'background 0.2s ease' }}
+            style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: 'var(--accent)', border: '1px solid color-mix(in srgb, var(--accent) 40%, transparent)', padding: '6px 14px', borderRadius: '4px', textDecoration: 'none', letterSpacing: '0.08em', transition: 'background 0.2s ease' }}
             onMouseEnter={e => e.currentTarget.style.background = 'color-mix(in srgb, var(--accent) 10%, transparent)'}
             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
           >
