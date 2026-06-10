@@ -1,22 +1,20 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { personalInfo } from "../../data/portfolioData";
 
-const ROLES = [
-  {
-    label: "Full-Stack Development",
-    desc: "End-to-end web apps — APIs, UIs, databases",
-  },
-  {
-    label: "Backend Engineering",
-    desc: "Node.js, Express, Django, REST APIs, SQL/NoSQL",
-  },
-  { label: "Frontend Interfaces", desc: "React, Tailwind CSS, clean UX" },
-  { label: "DevOps Engineering", desc: "CI/CD, docker, kubernetes, AWS, GCP" },
+const HIGHLIGHTS = [
+  { value: "3+", label: "Years Building" },
+  { value: "5+", label: "Projects Shipped" },
+  { value: "Full-Stack", label: "End-to-End Ownership" },
 ];
 
-export default function About() {
-  const [hovered, setHovered] = useState(null);
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 28 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.75, delay, ease: [0.76, 0, 0.24, 1] },
+});
 
+export default function About() {
   return (
     <section
       id="about"
@@ -29,147 +27,142 @@ export default function About() {
     >
       <div className="h-line" style={{ marginBottom: "5rem" }} />
 
-      {/* Header */}
-      <div
-        className="about-header"
+      {/* Label */}
+      <motion.p
+        {...fadeUp(0)}
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          flexWrap: "wrap",
-          gap: "1.5rem",
-          marginBottom: "3.5rem",
+          fontFamily: "JetBrains Mono, monospace",
+          fontSize: "0.65rem",
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+          color: "var(--accent)",
+          marginBottom: "1.5rem",
         }}
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-          style={{
-            fontFamily: "Syne, sans-serif",
-            fontWeight: 800,
-            fontSize: "clamp(2rem,5vw,3.5rem)",
-            color: "var(--fg)",
-            letterSpacing: "-0.03em",
-            lineHeight: 1.0,
-          }}
-        >
-          What I do.
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: "0.875rem",
-            color: "var(--muted)",
-            maxWidth: "320px",
-            lineHeight: 1.7,
-          }}
-        >
-          Full-stack developer based in Aachen, Germany — building complete web
-          products from database to deployment.
-        </motion.p>
+        About me
+      </motion.p>
+
+      {/* Two-column layout: big heading + paragraphs */}
+      <div
+        className="about-main-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "clamp(3rem,6vw,6rem)",
+          alignItems: "start",
+          marginBottom: "5rem",
+        }}
+      >
+        {/* Left — display heading */}
+        <motion.div {...fadeUp(0.05)}>
+          <h2
+            style={{
+              fontFamily: "Syne, sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(2.6rem,5vw,4.2rem)",
+              color: "var(--fg)",
+              letterSpacing: "-0.04em",
+              lineHeight: 1.0,
+            }}
+          >
+            I build things
+            <br />
+            for the{" "}
+            <span
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              web.
+            </span>
+          </h2>
+        </motion.div>
+
+        {/* Right — paragraphs */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          {personalInfo.bio.map((paragraph, i) => (
+            <motion.p
+              key={i}
+              {...fadeUp(0.1 + i * 0.1)}
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "clamp(0.95rem,1.5vw,1.05rem)",
+                fontWeight: 400,
+                color: i === 0 ? "var(--fg)" : "var(--muted)",
+                lineHeight: 1.85,
+                letterSpacing: "0.01em",
+              }}
+            >
+              {paragraph}
+            </motion.p>
+          ))}
+        </div>
       </div>
 
-      {/* Dossier-style rows */}
-      <div>
-        <motion.div
-          className="h-line"
-          initial={{ scaleX: 0, originX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-        />
+      {/* Accent divider */}
+      <motion.div
+        initial={{ scaleX: 0, originX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+        style={{
+          height: "1px",
+          background:
+            "linear-gradient(90deg, var(--accent), transparent)",
+          marginBottom: "3.5rem",
+        }}
+      />
 
-        {ROLES.map((role, i) => (
+      {/* Stats row */}
+      <div
+        className="about-stats-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "1px",
+          background: "var(--border)",
+          border: "1px solid var(--border)",
+        }}
+      >
+        {HIGHLIGHTS.map((item, i) => (
           <motion.div
-            key={role.label}
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{
-              delay: i * 0.1,
-              duration: 0.55,
-              ease: [0.76, 0, 0.24, 1],
-            }}
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-            className="about-row"
-            data-cursor-hover
+            key={item.label}
+            {...fadeUp(0.15 + i * 0.1)}
             style={{
+              padding: "2rem 2.5rem",
+              background: "var(--bg)",
               display: "flex",
-              alignItems: "center",
-              padding: "1.4rem 0",
-              borderBottom: "1px solid var(--border)",
-              gap: "1.5rem",
-              transition: "opacity 0.25s ease",
-              opacity: hovered === null ? 1 : hovered === i ? 1 : 0.25,
-              cursor: "none",
+              flexDirection: "column",
+              gap: "0.4rem",
             }}
           >
             <span
               style={{
-                fontFamily: "JetBrains Mono, monospace",
-                fontSize: "0.6rem",
-                color: hovered === i ? "var(--accent)" : "var(--muted)",
-                letterSpacing: "0.1em",
-                flexShrink: 0,
-                minWidth: "1.8rem",
-                transition: "color 0.25s ease",
-              }}
-            >
-              {String(i + 1).padStart(2, "0")}
-            </span>
-
-            <span
-              style={{
                 fontFamily: "Syne, sans-serif",
-                fontWeight: 700,
-                fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)",
-                color: hovered === i ? "var(--accent)" : "var(--fg)",
-                flex: 1,
-                letterSpacing: "-0.01em",
-                transition: "color 0.25s ease",
+                fontWeight: 800,
+                fontSize: "clamp(2rem,3vw,3rem)",
+                color: "var(--accent)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1,
               }}
             >
-              {role.label}
+              {item.value}
             </span>
-
-            <motion.span
-              className="about-row-desc"
-              animate={{
-                opacity: hovered === i ? 1 : 0,
-                x: hovered === i ? 0 : 8,
-              }}
-              transition={{ duration: 0.2 }}
+            <span
               style={{
                 fontFamily: "Inter, sans-serif",
                 fontSize: "0.8rem",
                 color: "var(--muted)",
-                textAlign: "right",
-                lineHeight: 1.5,
-                flexShrink: 0,
-                maxWidth: "220px",
+                letterSpacing: "0.03em",
+                textTransform: "uppercase",
               }}
             >
-              {role.desc}
-            </motion.span>
-
-            <motion.span
-              animate={{ x: hovered === i ? 4 : 0 }}
-              style={{
-                color: hovered === i ? "var(--accent)" : "var(--muted)",
-                fontSize: "0.9rem",
-                flexShrink: 0,
-                transition: "color 0.25s ease",
-              }}
-            >
-              ↗
-            </motion.span>
+              {item.label}
+            </span>
           </motion.div>
         ))}
       </div>

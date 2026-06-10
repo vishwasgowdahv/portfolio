@@ -9,8 +9,7 @@ export const personalInfo = {
   available: true,
   bio: [
     "I'm a full-stack web developer based in Aachen, Germany — building clean, scalable web applications from database to deployment.",
-    "I care about performance, developer experience, and shipping things that actually work. Whether it's a REST API with rate limiting, a Docker-composed microservice, or a polished React UI — I like to own the whole stack.",
-    "When I'm not coding, I'm probably exploring German engineering culture, tracking my work days, or building another side project no one asked for.",
+    "I care about performance, developer experience, and shipping things that actually work. Whether it's a REST API with rate limiting, a Deployment of scale, or a polished React UI — I like to own the whole stack.",
   ],
 };
 
