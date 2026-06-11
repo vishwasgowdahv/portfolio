@@ -88,7 +88,7 @@ export const featuredProjects = [
       "A utility app for international students and expats in the EU who can only work 140 days per year under their work permit. Track, visualise, and plan your remaining work days.",
     longDescription:
       "WorkTrack EU helps international students and expats in Germany and the EU manage their legally allowed 140 working days per year. Users log work days, view remaining quota, and get alerts when approaching limits.",
-    tags: ["Python", "Django", "MySQL"],
+    tags: ["Node.js", "React", "MySQL"],
     type: "Utility App",
     year: "2026",
     status: "In Development",
