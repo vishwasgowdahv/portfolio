@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { personalInfo } from "../../data/portfolioData";
 
+// ─── Live Aachen time ─────────────────────────────────────────────────────────
 function useAachenTime() {
   const [time, setTime] = useState(() =>
     new Date().toLocaleTimeString("en-GB", {
@@ -10,7 +11,7 @@ function useAachenTime() {
       minute: "2-digit",
       second: "2-digit",
       hour12: false,
-    }),
+    })
   );
   useEffect(() => {
     const id = setInterval(() => {
@@ -21,7 +22,7 @@ function useAachenTime() {
           minute: "2-digit",
           second: "2-digit",
           hour12: false,
-        }),
+        })
       );
     }, 1000);
     return () => clearInterval(id);
@@ -29,274 +30,286 @@ function useAachenTime() {
   return time;
 }
 
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
-};
-const wordVariants = {
-  hidden: { y: "110%", opacity: 0 },
-  show: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
-  },
-};
+// ─── Background typographic grid ─────────────────────────────────────────────
+const WORD_ROWS = [
+  ["React", "Node.js", "Python", "TypeScript"],
+  ["Docker", "AWS", "MySQL", "MongoDB"],
+  ["REST APIs", "Express", "Django", "Linux"],
+  ["Git", "CI/CD", "JWT", "Tailwind"],
+];
+
+function WordGrid() {
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        position: "absolute",
+        inset: 0,
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        gap: "clamp(12px, 2vw, 20px)",
+        padding: "clamp(80px, 12vw, 120px) 0",
+        pointerEvents: "none",
+        userSelect: "none",
+      }}
+    >
+      {WORD_ROWS.map((row, ri) => (
+        <motion.div
+          key={ri}
+          initial={{ opacity: 0, x: ri % 2 === 0 ? -20 : 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 2.8 + ri * 0.12, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{
+            display: "flex",
+            justifyContent: ri % 2 === 0 ? "flex-start" : "flex-end",
+            gap: "clamp(20px, 4vw, 48px)",
+            paddingLeft: ri % 2 === 0 ? "clamp(16px, 4vw, 48px)" : "0",
+            paddingRight: ri % 2 === 0 ? "0" : "clamp(16px, 4vw, 48px)",
+          }}
+        >
+          {row.map((word, wi) => (
+            <span
+              key={word}
+              style={{
+                fontFamily: "'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif",
+                fontSize: "clamp(18px, 3.5vw, 36px)",
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
+                color: wi === 1 ? "rgba(0,102,204,0.12)" : "rgba(29,29,31,0.055)",
+                whiteSpace: "nowrap",
+                lineHeight: 1,
+              }}
+            >
+              {word}
+            </span>
+          ))}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+// ─── Bottom stats strip ───────────────────────────────────────────────────────
+const STATS = [
+  { value: "3+", label: "Years" },
+  { value: "5+", label: "Projects" },
+  { value: "500+", label: "Problems Solved" },
+];
+
+// ─── Fade animation helper ────────────────────────────────────────────────────
+const fade = (delay = 0) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { delay, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+});
 
 export default function Hero() {
-  const aachenTime = useAachenTime();
+  const time = useAachenTime();
+
   return (
     <section
       id="hero"
-      className="hero-section"
+      className="tile tile-light"
       style={{
         minHeight: "100svh",
         display: "flex",
         flexDirection: "column",
-        padding:
-          "clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,3rem) clamp(3rem,6vw,5rem)",
-        maxWidth: "1100px",
-        margin: "0 auto",
-        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        paddingTop: "52px", /* clears 52px nav */
+        paddingBottom: "0",
         position: "relative",
+        overflow: "hidden",
       }}
     >
-      {/* Availability badge — repositioned via CSS on mobile */}
-      <motion.div
-        className="hero-badge"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 3.2, duration: 0.6 }}
+      {/* Background word grid */}
+      <WordGrid />
+
+      {/* Main content — sits above the grid */}
+      <div
+        className="tile-inner"
         style={{
-          position: "absolute",
-          top: "clamp(6rem,10vw,9rem)",
-          right: "clamp(1.5rem,5vw,3rem)",
-          textAlign: "right",
+          maxWidth: "760px",
+          position: "relative",
+          zIndex: 1,
+          padding: "64px 24px",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-end",
-            gap: "0.25rem",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "JetBrains Mono, monospace",
-              fontWeight: 400,
-              fontSize: "0.8rem",
-              color: "var(--muted)",
-              letterSpacing: "0.15em",
-            }}
-          >
-            AACHEN, GERMANY
-          </p>
-          <p
-            style={{
-              fontFamily: "JetBrains Mono, monospace",
-              fontSize: "0.8rem",
-              fontWeight: 300,
-              color: "var(--accent)",
-              letterSpacing: "0.12em",
-              opacity: 1,
-              tabularNums: "tabular-nums",
-              fontVariantNumeric: "tabular-nums",
-            }}
-          >
-            {aachenTime}
-          </p>
-        </div>
-        {/* <p
-          style={{
-            fontFamily: "JetBrains Mono, monospace",
-            fontSize: "0.65rem",
-            color: "var(--accent)",
-            letterSpacing: "0.15em",
-            marginTop: "0.25rem",
-          }}
-        >
-          {personalInfo.available ? "● AVAILABLE" : "○ BUSY"}
-        </p> */}
-      </motion.div>
-
-      {/* Heading */}
-      <div style={{ marginBottom: "2.5rem" }}>
+        {/* Availability + location badges */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3.1, duration: 0.6 }}
-          style={{ marginBottom: "1.2rem" }}
+          {...fade(2.3)}
+          style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "28px", flexWrap: "wrap", justifyContent: "center" }}
         >
           <span
             style={{
-              fontFamily: "JetBrains Mono, monospace",
-              fontSize: "0.7rem",
-              color: "var(--accent)",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              background: "rgba(29,122,52,0.08)",
+              color: "#1d7a34",
+              border: "1px solid rgba(29,122,52,0.2)",
+              borderRadius: "9999px",
+              padding: "5px 14px",
+              fontSize: "12px",
+              fontFamily: "'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif",
+              fontWeight: 500,
+              letterSpacing: "-0.1px",
             }}
           >
-            ✦ &nbsp; Vishwas Gowda
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#1d7a34", display: "inline-block" }} />
+            Available for work
+          </span>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              color: "#7a7a7a",
+              fontSize: "12px",
+              fontFamily: "'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif",
+              letterSpacing: "-0.1px",
+            }}
+          >
+            <span>📍</span>
+            Aachen, Germany ·{" "}
+            <span style={{ fontVariantNumeric: "tabular-nums", color: "#0066cc", fontWeight: 500 }}>
+              {time}
+            </span>
           </span>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          style={{ overflow: "hidden" }}
+        {/* Hero display headline */}
+        <motion.h1
+          {...fade(2.5)}
+          className="t-hero"
+          style={{ color: "#1d1d1f", marginBottom: "20px", lineHeight: 1.05 }}
         >
-          {["Web-App", "Developer"].map((word, i) => (
-            <div key={i} style={{ overflow: "hidden", display: "block" }}>
-              <motion.h1
-                variants={wordVariants}
-                style={{
-                  fontFamily: "Syne, sans-serif",
-                  fontWeight: 800,
-                  fontSize: "clamp(2.5rem,9vw,8rem)",
-                  color: "var(--fg)",
-                  lineHeight: 0.95,
-                  letterSpacing: "-0.03em",
-                  display: "block",
-                }}
-              >
-                {i === 1 ? (
-                  <>
-                    <span className="gradient-text">{word}</span>
-                    <span
-                      style={{
-                        color: "var(--accent)",
-                        fontSize: "0.4em",
-                        marginLeft: "0.2em",
-                      }}
-                    >
-                      ↗
-                    </span>
-                  </>
-                ) : (
-                  word
-                )}
-              </motion.h1>
-            </div>
-          ))}
-        </motion.div>
-      </div>
+          {personalInfo.name}
+        </motion.h1>
 
-      {/* Bottom row */}
-      <motion.div
-        className="hero-bottom"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 3.5, duration: 0.7 }}
-        style={{
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: "1.5rem",
-        }}
-      >
-        <p
+        {/* Subtitle */}
+        <motion.p
+          {...fade(2.62)}
           style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: "clamp(0.85rem,1.5vw,1rem)",
-            color: "var(--muted)",
-            maxWidth: "380px",
-            lineHeight: 1.7,
+            fontFamily: "'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif",
+            fontSize: "clamp(22px, 3.5vw, 32px)",
+            fontWeight: 600,
+            color: "#0066cc",
+            letterSpacing: "-0.01em",
+            marginBottom: "20px",
+            lineHeight: 1.1,
+          }}
+        >
+          Full-Stack Developer
+        </motion.p>
+
+        {/* Lead tagline */}
+        <motion.p
+          {...fade(2.75)}
+          className="t-lead"
+          style={{
+            color: "#555555",
+            marginBottom: "40px",
+            maxWidth: "520px",
+            fontSize: "clamp(17px, 2vw, 21px)",
+            lineHeight: 1.5,
           }}
         >
           {personalInfo.tagline}
-        </p>
-        <div
-          style={{
-            display: "flex",
-            gap: "0.75rem",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
+        </motion.p>
+
+        {/* CTA row */}
+        <motion.div
+          {...fade(2.9)}
+          className="hero-ctas"
+          style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap", marginBottom: "0" }}
         >
           <a
             href="#work"
-            onClick={(e) => {
+            className="btn-primary"
+            onClick={e => {
               e.preventDefault();
-              document
-                .querySelector("#work")
-                ?.scrollIntoView({ behavior: "smooth" });
+              document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
             }}
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: "0.875rem",
-              fontWeight: 500,
-              color: "var(--accent-fg)",
-              background: "var(--accent)",
-              padding: "12px 28px",
-              borderRadius: "2px",
-              textDecoration: "none",
-              display: "inline-block",
-              transition: "opacity 0.2s ease",
-            }}
-            onMouseEnter={(e) => (e.target.style.opacity = "0.85")}
-            onMouseLeave={(e) => (e.target.style.opacity = "1")}
+            style={{ fontSize: "17px", padding: "13px 28px" }}
           >
             See My Work
           </a>
           <a
             href={`mailto:${personalInfo.email}`}
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: "0.875rem",
-              color: "var(--fg)",
-              border: "1px solid var(--border)",
-              padding: "11px 24px",
-              borderRadius: "2px",
-              textDecoration: "none",
-              display: "inline-block",
-              transition: "border-color 0.2s ease",
-            }}
-            onMouseEnter={(e) => (e.target.style.borderColor = "var(--accent)")}
-            onMouseLeave={(e) => (e.target.style.borderColor = "var(--border)")}
+            className="btn-secondary"
+            style={{ fontSize: "17px", padding: "12px 27px" }}
           >
             Get in Touch
           </a>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
-      {/* Scroll indicator */}
+      {/* Bottom stats strip */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 4, duration: 0.6 }}
+        transition={{ delay: 3.3, duration: 0.7 }}
         style={{
-          position: "absolute",
-          bottom: "2rem",
-          left: "50%",
-          transform: "translateX(-50%)",
+          width: "100%",
+          borderTop: "1px solid #f0f0f0",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.4rem",
+          justifyContent: "center",
+          position: "relative",
+          zIndex: 1,
         }}
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        <div
           style={{
-            width: "1px",
-            height: "40px",
-            background: `linear-gradient(to bottom, var(--accent), transparent)`,
-          }}
-        />
-        <p
-          style={{
-            fontFamily: "JetBrains Mono, monospace",
-            fontSize: "0.55rem",
-            color: "var(--muted)",
-            letterSpacing: "0.15em",
+            maxWidth: "760px",
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
           }}
         >
-          SCROLL
-        </p>
+          {STATS.map((s, i) => (
+            <div
+              key={s.label}
+              style={{
+                padding: "24px",
+                textAlign: "center",
+                borderRight: i < STATS.length - 1 ? "1px solid #f0f0f0" : "none",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif",
+                  fontSize: "clamp(22px, 3vw, 30px)",
+                  fontWeight: 600,
+                  color: "#1d1d1f",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1,
+                  marginBottom: "4px",
+                }}
+              >
+                {s.value}
+              </p>
+              <p
+                style={{
+                  fontFamily: "'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif",
+                  fontSize: "13px",
+                  color: "#7a7a7a",
+                  letterSpacing: "-0.1px",
+                }}
+              >
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </div>
       </motion.div>
     </section>
   );

@@ -1,355 +1,376 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-@import "tailwindcss";
+/* ─── Global nav ─────────────────────────────────────────────────────────── */
+.global-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  display: flex;
+  align-items: center;
+  z-index: 200;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
-/* ─── Light theme (default) ──────────────────────────────── */
+/* ─── Apple Design Tokens ────────────────────────────────────────────────── */
 :root {
-  --bg:         #FFFFFF;
-  --surface:    #FAFAFA;
-  --fg:         #111111;
-  --accent:     #C4975A;
-  --accent-fg:  #FFFFFF;
-  --muted:      #888888;
-  --border:     #E8E8E8;
-  --card:       #FFFFFF;
-  --card-hover: #F8F8F8;
-  --shadow:     rgba(0,0,0,0.06);
-  --noise-opacity: 0.02;
+  /* Brand / Accent */
+  --blue:           #0066cc;
+  --blue-focus:     #0071e3;
+  --blue-dark:      #2997ff;   /* on-dark surfaces */
+
+  /* Text */
+  --ink:            #1d1d1f;
+  --ink-muted-80:   #333333;
+  --ink-muted-48:   #7a7a7a;
+  --body-muted:     #cccccc;   /* secondary on dark */
+
+  /* Surfaces */
+  --canvas:         #ffffff;
+  --parchment:      #f5f5f7;
+  --surface-pearl:  #fafafc;
+  --tile-1:         #272729;
+  --tile-2:         #2a2a2c;
+  --tile-3:         #252527;
+  --black:          #000000;
+
+  /* Borders */
+  --hairline:       #e0e0e0;
+  --divider:        #f0f0f0;
+  --chip-gray:      rgba(210, 210, 215, 0.64);
+
+  /* Aliases used throughout components */
+  --fg:             var(--ink);
+  --bg:             var(--canvas);
+  --muted:          var(--ink-muted-48);
+  --border:         var(--hairline);
+  --accent:         var(--blue);
 }
 
-/* ─── Dark theme ─────────────────────────────────────────── */
-html[data-theme="dark"] {
-  --bg:         #0C0C0C;
-  --surface:    #111111;
-  --fg:         #F0EDE8;
-  --accent:     #E8D5B0;
-  --accent-fg:  #0C0C0C;
-  --muted:      #6B6B6B;
-  --border:     #1E1E1E;
-  --card:       #111111;
-  --card-hover: #161616;
-  --shadow:     rgba(0,0,0,0.3);
-  --noise-opacity: 0.035;
-}
-
-/* ─── Base Reset ─────────────────────────────────────────── */
+/* ─── Base Reset ─────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--bg);
-  color: var(--fg);
-  font-family: 'Inter', sans-serif;
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 17px;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--fg);
+  background-color: var(--canvas);
+  color: var(--ink);
   overflow-x: hidden;
-  cursor: none;
-  transition: background-color 0.3s ease;
 }
 
-/* ─── Custom Scrollbar ───────────────────────────────────── */
+/* ─── Custom Scrollbar ───────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--parchment); }
+::-webkit-scrollbar-thumb { background: var(--hairline); border-radius: 2px; }
 
-/* ─── Custom Cursor ──────────────────────────────────────── */
-.cursor-dot {
-  position: fixed; top: 0; left: 0;
-  width: 8px; height: 8px;
-  background-color: var(--accent);
-  border-radius: 50%; pointer-events: none; z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s ease, height 0.2s ease;
-}
-.cursor-ring {
-  position: fixed; top: 0; left: 0;
-  width: 36px; height: 36px;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  border-radius: 50%; pointer-events: none; z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease;
-}
-.cursor-dot.hovering  { width: 14px; height: 14px; }
-.cursor-ring.hovering { width: 54px; height: 54px; border-color: color-mix(in srgb, var(--accent) 70%, transparent); }
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection { background: var(--blue); color: #ffffff; }
 
-/* ─── Noise Texture ──────────────────────────────────────── */
-.noise-overlay {
-  position: fixed; inset: 0; z-index: 1; pointer-events: none;
-  opacity: var(--noise-opacity);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+/* ─── Apple Typography Utilities ─────────────────────────────────────────── */
+.t-hero {
+  font-family: 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: clamp(34px, 6vw, 56px);
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.28px;
 }
 
-/* ─── Selection ──────────────────────────────────────────── */
-::selection { background: var(--accent); color: var(--accent-fg); }
-
-/* ─── Animated link underline ────────────────────────────── */
-.animated-link { position: relative; display: inline-block; }
-.animated-link::after {
-  content: ''; position: absolute; bottom: -2px; left: 0;
-  width: 0%; height: 1px; background-color: var(--accent);
-  transition: width 0.3s ease;
-}
-.animated-link:hover::after { width: 100%; }
-
-/* ─── Gradient text ──────────────────────────────────────── */
-.gradient-text {
-  background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+.t-display-lg {
+  font-family: 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
-/* ─── Preloader ──────────────────────────────────────────── */
+.t-display-md {
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: clamp(24px, 3.5vw, 34px);
+  font-weight: 600;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+}
+
+.t-lead {
+  font-family: 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: clamp(19px, 2.5vw, 28px);
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: 0.196px;
+}
+
+.t-tagline {
+  font-family: 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.19;
+  letter-spacing: 0.231px;
+}
+
+.t-body {
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+}
+
+.t-body-strong {
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -0.374px;
+}
+
+.t-caption {
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+}
+
+.t-caption-strong {
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: -0.224px;
+}
+
+.t-nav {
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.12px;
+}
+
+.t-fine {
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.12px;
+  color: var(--ink-muted-48);
+}
+
+.t-dense-link {
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 2.41;
+  letter-spacing: 0;
+}
+
+/* ─── Apple Button Components ────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue);
+  color: #ffffff;
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  line-height: 1;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+}
+.btn-primary:hover { opacity: 0.88; }
+.btn-primary:active { transform: scale(0.97); opacity: 1; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--blue);
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  line-height: 1;
+  padding: 10px 21px;
+  border-radius: 9999px;
+  border: 1px solid var(--blue);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+.btn-secondary:hover { background: rgba(0, 102, 204, 0.06); }
+.btn-secondary:active { transform: scale(0.97); }
+
+/* Ghost pill for dark backgrounds */
+.btn-secondary-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #ffffff;
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  line-height: 1;
+  padding: 10px 21px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.4);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+.btn-secondary-dark:hover { background: rgba(255,255,255,0.08); }
+
+/* Text link — light surface */
+.text-link {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 17px;
+  letter-spacing: -0.374px;
+  transition: opacity 0.15s ease;
+}
+.text-link:hover { opacity: 0.8; }
+
+/* Text link — dark surface */
+.text-link-dark {
+  color: var(--blue-dark);
+  text-decoration: none;
+  font-size: 17px;
+  letter-spacing: -0.374px;
+  transition: opacity 0.15s ease;
+}
+.text-link-dark:hover { opacity: 0.8; }
+
+/* ─── Apple Section Tiles ─────────────────────────────────────────────────── */
+.tile {
+  width: 100%;
+  padding: 80px clamp(24px, 5vw, 48px);
+}
+
+.tile-light  { background: var(--canvas);    color: var(--ink); }
+.tile-parch  { background: var(--parchment); color: var(--ink); }
+.tile-dark-1 { background: var(--tile-1);    color: #ffffff; }
+.tile-dark-2 { background: var(--tile-2);    color: #ffffff; }
+.tile-dark-3 { background: var(--tile-3);    color: #ffffff; }
+
+/* Content centering inside tile */
+.tile-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ─── Apple Utility Card (store-utility-card) ─────────────────────────────── */
+.utility-card {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  padding: 24px;
+  transition: box-shadow 0.2s ease;
+}
+.utility-card:hover {
+  box-shadow: none; /* Apple: no shadow on cards */
+}
+
+/* ─── Hairline divider ───────────────────────────────────────────────────── */
+.hairline { width: 100%; height: 1px; background: var(--hairline); }
+.hairline-dark { width: 100%; height: 1px; background: rgba(255,255,255,0.1); }
+
+/* ─── Preloader ──────────────────────────────────────────────────────────── */
 .preloader {
-  position: fixed; inset: 0; background: var(--bg); z-index: 9999;
-  display: flex; align-items: center; justify-content: center; flex-direction: column;
-}
-.preloader-letter {
-  display: inline-block; font-family: 'Syne', sans-serif;
-  font-weight: 800; font-size: clamp(3rem, 8vw, 7rem);
-  color: var(--fg); letter-spacing: 0.15em;
-}
-
-/* ─── Dividers ───────────────────────────────────────────── */
-.h-line  { width: 100%; height: 1px; background: var(--border); }
-.section-divider { width: 40px; height: 1px; background: var(--accent); margin-bottom: 1rem; }
-
-/* ─── Cards ──────────────────────────────────────────────── */
-.card-glow {
-  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
-}
-.card-glow:hover {
-  box-shadow: 0 8px 40px var(--shadow);
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  position: fixed; inset: 0;
+  background: var(--canvas);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-/* ─── Tech tag ───────────────────────────────────────────── */
-.tech-tag {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-  letter-spacing: 0.04em; padding: 3px 10px;
-  border: 2px solid var(--border); border-radius: 2px;
-  color: var(--muted); background: transparent;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-.tech-tag:hover { border-color: color-mix(in srgb, var(--accent) 60%, transparent); color: var(--accent); }
 
-/* ─── Hero section ──────────────────────────────────────── */
-.hero-section { justify-content: flex-end; }
 
-/* ─── Marquee ────────────────────────────────────────────── */
+/* ─── Marquee ────────────────────────────────────────────────────────────── */
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marquee-track { animation: marquee 22s linear infinite; }
+.marquee-track { animation: marquee 28s linear infinite; }
 .marquee-track:hover { animation-play-state: paused; }
 
-/* ─── Theme toggle ───────────────────────────────────────── */
-.theme-toggle {
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 1px solid var(--border); background: var(--card);
-  display: flex; align-items: center; justify-content: center;
-  cursor: none; transition: border-color 0.2s ease, background 0.2s ease;
-  color: var(--muted);
-}
-.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
-
-/* ─── Stack row (TechStack redesign) ─────────────────────── */
-.stack-row {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  align-items: start;
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--border);
-  gap: 1.5rem;
-}
-.stack-row:first-child { border-top: 1px solid var(--border); }
-
-/* ─── Project link buttons ───────────────────────────────── */
-.project-links {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  align-items: center;
+/* ─── Tech tag (caption pill) ────────────────────────────────────────────── */
+.tech-tag {
+  font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.12px;
+  padding: 4px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 9999px;
+  color: var(--ink-muted-48);
+  background: transparent;
+  white-space: nowrap;
 }
 
-/* ─── Navbar responsive show/hide (replaces Tailwind md:hidden / hidden md:flex) */
-.nav-desktop { display: flex; gap: 2.5rem; align-items: center; }
-.nav-mobile  { display: none; gap: 0.75rem; align-items: center; }
+/* ─── Responsive Breakpoints ─────────────────────────────────────────────── */
 
-/* ─── Tablet breakpoint (769px – 1024px) ────────────────── */
-@media (max-width: 1024px) {
-  /* Projects: allow 2-col on tablet but safe min */
-  .projects-featured-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-  }
-  .projects-small-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
-  }
+/* Nav default states */
+.nav-links-desktop { display: flex; }
+.nav-hamburger     { display: none; }
 
-  /* TechStack: compress category label column */
-  .tech-category-row {
-    grid-template-columns: 90px 1fr auto !important;
-  }
-
-  /* About: collapse to single column on tablet */
-  .about-main-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2.5rem !important;
-  }
-
-  /* About stats: 3-col still fine on tablet, already 1fr each */
+/* Small desktop 1024–1068px */
+@media (max-width: 1068px) {
+  .tile { padding: 64px clamp(20px, 4vw, 40px); }
+  .projects-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important; }
+  .coding-grid   { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; }
 }
 
-/* ─── Mobile responsiveness (≤ 768px) ───────────────────── */
-@media (max-width: 768px) {
+/* Tablet landscape 834–1068px */
+@media (max-width: 834px) {
+  .nav-links-desktop { display: none !important; }
+  .nav-hamburger     { display: flex !important; }
 
-  /* Swap nav visibility */
-  .nav-desktop { display: none !important; }
-  .nav-mobile  { display: flex !important; }
-
-  /* Hide custom cursor on touch devices */
-  .cursor-dot, .cursor-ring { display: none; }
-  body { cursor: auto; }
-  button, a { cursor: pointer; }
-
-  /* Navbar: tighten padding */
-  nav { padding: 1rem 1.25rem !important; }
-
-  /* Hero: center content vertically on mobile */
-  .hero-section { justify-content: center !important; }
-
-  /* Hero: stack bottom row vertically */
-  .hero-bottom {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 1.5rem !important;
-  }
-  .hero-bottom > div {
-    flex-direction: column !important;
-    width: 100% !important;
-  }
-  .hero-bottom a {
-    width: 100% !important;
-    text-align: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Hero availability badge: reposition on mobile */
-  .hero-badge {
-    gap: 1.5rem !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  /* Section padding */
-  section { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-
-  /* About: stack two-column layout vertically */
-  .about-main-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-  }
-
-  /* About stats: stack to single column on mobile */
-  .about-stats-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* TechStack header: stack */
-  .stack-header {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.75rem !important;
-  }
-
-  /* TechStack rows: stack vertically */
-  .tech-category-row {
-    grid-template-columns: 1fr !important;
-    gap: 0.5rem !important;
-    padding: 1rem 0 !important;
-  }
-  .tech-category-row .tech-count { display: none !important; }
-
-  /* TechStack tech names: smaller on mobile, allow wrap */
-  .tech-name { font-size: 1rem !important; white-space: normal !important; }
-
-  /* Projects: single column on mobile */
-  .projects-featured-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .projects-small-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Coding profiles: single column on mobile */
-  .coding-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* ProjectCard footer: stack */
-  .card-footer {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.75rem !important;
-  }
-
-  /* Project links: wrap */
-  .project-links { flex-wrap: wrap !important; }
-
-  /* Timeline: reduce left padding */
-  .timeline-container { padding-left: 1.25rem !important; }
-
-  /* Contact: reduce font */
-  .contact-heading { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
-
-  /* Contact buttons: stack on mobile */
-  .contact-actions {
-    flex-direction: column !important;
-    align-items: stretch !important;
-  }
-  .contact-actions a {
-    text-align: center !important;
-    justify-content: center !important;
-  }
-
-  /* Contact email pill: allow text to wrap / shrink */
-  .contact-email-pill {
-    max-width: 100% !important;
-    word-break: break-all !important;
-    flex-wrap: wrap !important;
-  }
-
-  /* Footer */
-  footer > div {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 1rem !important;
-  }
-  footer { padding: 1.5rem 1.25rem !important; }
-
-  /* Project detail: header */
-  .detail-heading { font-size: clamp(2.5rem, 8vw, 4rem) !important; }
-
-  /* Detail links grid: stack */
-  .detail-links {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Stack rows: full-width label */
-  .stack-row {
-    grid-template-columns: 1fr !important;
-  }
+  .projects-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; }
+  .coding-grid   { grid-template-columns: 1fr 1fr !important; }
+  .about-grid    { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .about-stats   { grid-template-columns: repeat(3, 1fr) !important; }
 }
 
-@media (max-width: 480px) {
-  .hero-bottom a { padding: 12px 16px !important; font-size: 0.82rem !important; }
-  .project-links a, .project-links button { font-size: 0.75rem !important; }
-
-  /* Tighten section padding on very small phones */
-  section { padding-left: 1rem !important; padding-right: 1rem !important; }
-  nav { padding: 0.9rem 1rem !important; }
-  footer { padding: 1.25rem 1rem !important; }
+/* Tablet portrait 640–834px */
+@media (max-width: 734px) {
+  .tile { padding: 48px clamp(16px, 4vw, 24px); }
+  .coding-grid   { grid-template-columns: 1fr !important; }
+  .footer-grid   { grid-template-columns: 1fr 1fr !important; }
 }
 
+/* Phone 420–640px */
+@media (max-width: 640px) {
+  .t-hero    { font-size: 34px; }
+  .t-display-lg { font-size: 28px; }
+  .projects-grid { grid-template-columns: 1fr !important; }
+  .about-stats   { grid-template-columns: 1fr !important; }
+  .footer-grid   { grid-template-columns: 1fr !important; }
+  .hero-ctas { flex-direction: column !important; align-items: stretch !important; }
+  .hero-ctas a { text-align: center !important; }
+}
+
+/* Small phone ≤419px */
+@media (max-width: 419px) {
+  .tile { padding: 40px 16px; }
+  .t-hero    { font-size: 28px; }
+  .t-display-lg { font-size: 24px; }
+}

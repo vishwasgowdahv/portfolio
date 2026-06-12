@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ThemeProvider } from './contexts/ThemeContext';
+import { AnimatePresence } from 'framer-motion';
 import Preloader from './components/layout/Preloader';
-import CustomCursor from './components/layout/CustomCursor';
 import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
 
@@ -28,15 +26,11 @@ export default function App() {
   }, [preloaderDone]);
 
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <div className="noise-overlay" />
-        <CustomCursor />
-        <AnimatePresence>
-          {!preloaderDone && <Preloader onComplete={() => setPreloaderDone(true)} />}
-        </AnimatePresence>
-        <AppRoutes />
-      </BrowserRouter>
-    </ThemeProvider>
+    <BrowserRouter>
+      <AnimatePresence>
+        {!preloaderDone && <Preloader onComplete={() => setPreloaderDone(true)} />}
+      </AnimatePresence>
+      <AppRoutes />
+    </BrowserRouter>
   );
 }

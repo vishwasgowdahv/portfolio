@@ -7,11 +7,14 @@ import Footer from '../components/layout/Footer';
 function LinkCard({ href, icon, label, sublabel, available = true }) {
   if (!available || !href) {
     return (
-      <div style={{ padding: '1rem 1.25rem', border: '1px solid var(--border)', borderRadius: '4px', background: 'var(--card)', opacity: 0.4, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <div style={{
+        padding: '16px 20px', border: '1px solid #e0e0e0', borderRadius: '18px',
+        background: '#ffffff', opacity: 0.4, display: 'flex', alignItems: 'center', gap: '12px',
+      }}>
         <span style={{ fontSize: '1.1rem' }}>{icon}</span>
         <div>
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', color: 'var(--fg)', fontWeight: 500 }}>{label}</p>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.62rem', color: 'var(--muted)', marginTop: '2px' }}>Not available</p>
+          <p className="t-body-strong" style={{ color: '#1d1d1f' }}>{label}</p>
+          <p className="t-caption" style={{ color: '#7a7a7a', marginTop: '2px' }}>Not available</p>
         </div>
       </div>
     );
@@ -22,16 +25,22 @@ function LinkCard({ href, icon, label, sublabel, available = true }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      style={{ padding: '1rem 1.25rem', border: '1px solid var(--border)', borderRadius: '4px', background: 'var(--card)', display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'border-color 0.2s ease, transform 0.2s ease', cursor: 'pointer' }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+      style={{
+        padding: '16px 20px', border: '1px solid #e0e0e0', borderRadius: '18px',
+        background: '#ffffff', display: 'flex', alignItems: 'center', gap: '12px',
+        textDecoration: 'none', transition: 'border-color 0.2s ease',
+      }}
+      onMouseEnter={e => e.currentTarget.style.borderColor = '#0066cc'}
+      onMouseLeave={e => e.currentTarget.style.borderColor = '#e0e0e0'}
     >
       <span style={{ fontSize: '1.1rem', flexShrink: 0 }}>{icon}</span>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', color: 'var(--fg)', fontWeight: 500 }}>{label}</p>
-        <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: 'var(--muted)', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{sublabel}</p>
+        <p className="t-body-strong" style={{ color: '#1d1d1f' }}>{label}</p>
+        <p className="t-caption" style={{ color: '#7a7a7a', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          {sublabel}
+        </p>
       </div>
-      <span style={{ color: 'var(--accent)', fontSize: '0.9rem', flexShrink: 0 }}>↗</span>
+      <span style={{ color: '#0066cc', fontSize: '1rem', flexShrink: 0 }}>↗</span>
     </a>
   );
 }
@@ -43,10 +52,14 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <div style={{ minHeight: '100svh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg)' }}>
+      <div style={{ minHeight: '100svh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#ffffff' }}>
         <Navbar />
-        <p style={{ fontFamily: 'Syne, sans-serif', fontSize: '2rem', color: 'var(--fg)' }}>Project not found.</p>
-        <button onClick={() => navigate('/')} style={{ marginTop: '1rem', fontFamily: 'Inter, sans-serif', fontSize: '0.9rem', color: 'var(--accent)', background: 'none', border: 'none' }}>
+        <p className="t-display-lg" style={{ color: '#1d1d1f' }}>Project not found.</p>
+        <button
+          onClick={() => navigate('/')}
+          className="btn-primary"
+          style={{ marginTop: '24px' }}
+        >
           ← Back home
         </button>
       </div>
@@ -56,87 +69,102 @@ export default function ProjectDetail() {
   return (
     <>
       <Navbar />
-      <main style={{ minHeight: '100svh', padding: 'clamp(6rem,10vw,9rem) clamp(1.25rem,5vw,3rem) 4rem', maxWidth: '900px', margin: '0 auto' }}>
+      <main style={{
+        minHeight: '100svh',
+        background: '#ffffff',
+        padding: 'clamp(80px, 10vw, 120px) clamp(20px, 5vw, 48px) 80px',
+        maxWidth: '900px',
+        margin: '0 auto',
+      }}>
 
         {/* Back */}
         <motion.button
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
           onClick={() => navigate('/')}
-          style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: 'var(--muted)', background: 'none', border: 'none', letterSpacing: '0.1em', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '3rem', transition: 'color 0.2s ease', cursor: 'pointer' }}
-          onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
-          onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
+          className="t-caption"
+          style={{
+            color: '#7a7a7a', background: 'none', border: 'none',
+            display: 'flex', alignItems: 'center', gap: '8px',
+            marginBottom: '48px', cursor: 'pointer', transition: 'color 0.15s ease',
+          }}
+          onMouseEnter={e => e.currentTarget.style.color = '#0066cc'}
+          onMouseLeave={e => e.currentTarget.style.color = '#7a7a7a'}
         >
-          ← BACK
+          ← Back
         </motion.button>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}>
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
 
           {/* Meta */}
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.65rem', color: 'var(--accent)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+          <p className="t-caption" style={{ color: '#7a7a7a', marginBottom: '12px' }}>
             {project.type} · {project.year}
           </p>
 
           {/* Title + status */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '0.5rem' }}>
-            <h1 className="detail-heading" style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(2.5rem,7vw,5.5rem)', color: 'var(--fg)', lineHeight: 1.0, letterSpacing: '-0.03em' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '8px' }}>
+            <h1
+              className="t-hero"
+              style={{ color: '#1d1d1f', letterSpacing: '-0.28px' }}
+            >
               {project.title}
             </h1>
             {project.status === 'Live' && (
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.65rem', padding: '5px 12px', border: '1px solid rgba(100,200,100,0.4)', color: '#4CAF50', borderRadius: '2px', whiteSpace: 'nowrap', alignSelf: 'flex-start', marginTop: '0.5rem' }}>
-                ● LIVE
+              <span
+                className="t-caption"
+                style={{
+                  color: '#1d7a34', background: 'rgba(29,122,52,0.08)',
+                  padding: '4px 12px', borderRadius: '9999px', whiteSpace: 'nowrap',
+                  alignSelf: 'flex-start', marginTop: '8px',
+                }}
+              >
+                ● Live
               </span>
             )}
           </div>
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', color: 'var(--accent)', marginBottom: '2.5rem' }}>{project.subtitle}</p>
+          <p className="text-link" style={{ fontSize: '17px', marginBottom: '40px', display: 'block' }}>
+            {project.subtitle}
+          </p>
 
-          <div className="h-line" style={{ marginBottom: '2.5rem' }} />
+          {/* Hairline */}
+          <div style={{ width: '100%', height: '1px', background: '#e0e0e0', marginBottom: '40px' }} />
 
-          {/* ── Links grid ─────────────────────────────── */}
-          <div className="detail-links" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.75rem', marginBottom: '2.5rem' }}>
-            <LinkCard
-              href={project.liveUrl}
-              icon="🌐"
-              label="Live Site"
-              sublabel={project.liveUrl ? project.liveUrl.replace('https://', '') : ''}
-              available={!!project.liveUrl}
-            />
-            <LinkCard
-              href={project.githubUrl}
-              icon="🐙"
-              label="GitHub Repository"
-              sublabel={project.githubUrl ? project.githubUrl.replace('https://github.com/', '') : ''}
-              available={!!project.githubUrl}
-            />
-            <LinkCard
-              href={project.dockerUrl}
-              icon="🐳"
-              label="Docker Hub"
-              sublabel={project.dockerUrl ? project.dockerUrl.replace('https://hub.docker.com/r/', '') : ''}
-              available={!!project.dockerUrl}
-            />
+          {/* Links grid */}
+          <div
+            className="detail-links"
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px', marginBottom: '40px' }}
+          >
+            <LinkCard href={project.liveUrl} icon="🌐" label="Live Site"
+              sublabel={project.liveUrl ? project.liveUrl.replace('https://', '') : ''} available={!!project.liveUrl} />
+            <LinkCard href={project.githubUrl} icon="🐙" label="GitHub Repository"
+              sublabel={project.githubUrl ? project.githubUrl.replace('https://github.com/', '') : ''} available={!!project.githubUrl} />
+            <LinkCard href={project.dockerUrl} icon="🐳" label="Docker Hub"
+              sublabel={project.dockerUrl ? project.dockerUrl.replace('https://hub.docker.com/r/', '') : ''} available={!!project.dockerUrl} />
           </div>
 
-          <div className="h-line" style={{ marginBottom: '2.5rem' }} />
+          {/* Hairline */}
+          <div style={{ width: '100%', height: '1px', background: '#e0e0e0', marginBottom: '40px' }} />
 
           {/* Description */}
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', color: 'var(--muted)', lineHeight: 1.85, marginBottom: '2.5rem', maxWidth: '640px' }}>
+          <p className="t-body" style={{ color: '#333333', marginBottom: '40px', maxWidth: '640px', lineHeight: 1.7 }}>
             {project.longDescription}
           </p>
 
           {/* Highlights */}
-          <div style={{ marginBottom: '2.5rem' }}>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-              Key Features
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+          <div style={{ marginBottom: '40px' }}>
+            <p className="t-caption-strong" style={{ color: '#1d1d1f', marginBottom: '16px' }}>Key Features</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {project.highlights.map((h, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 + i * 0.07 }}
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.85rem 1.1rem', border: '1px solid var(--border)', borderRadius: '2px', background: 'var(--card)' }}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '12px',
+                    padding: '14px 18px', border: '1px solid #e0e0e0', borderRadius: '11px',
+                    background: '#ffffff',
+                  }}
                 >
-                  <span style={{ color: 'var(--accent)', fontSize: '0.6rem', flexShrink: 0 }}>▸</span>
-                  <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.875rem', color: 'var(--fg)' }}>{h}</span>
+                  <span style={{ color: '#0066cc', fontSize: '0.7rem', flexShrink: 0 }}>▸</span>
+                  <span className="t-body" style={{ color: '#1d1d1f', fontSize: '15px' }}>{h}</span>
                 </motion.div>
               ))}
             </div>
@@ -144,13 +172,12 @@ export default function ProjectDetail() {
 
           {/* Tags */}
           <div>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-              Tech Stack
-            </p>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              {project.tags.map(tag => <span key={tag} className="tech-tag" style={{ fontSize: '0.78rem', padding: '5px 12px' }}>{tag}</span>)}
+            <p className="t-caption-strong" style={{ color: '#1d1d1f', marginBottom: '12px' }}>Tech Stack</p>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {project.tags.map(tag => <span key={tag} className="tech-tag">{tag}</span>)}
             </div>
           </div>
+
         </motion.div>
       </main>
       <Footer />
