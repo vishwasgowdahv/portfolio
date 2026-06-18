@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Preloader from './components/layout/Preloader';
 import CustomCursor from './components/layout/CustomCursor';
@@ -36,6 +37,7 @@ export default function App() {
           {!preloaderDone && <Preloader onComplete={() => setPreloaderDone(true)} />}
         </AnimatePresence>
         <AppRoutes />
+        <Analytics />
       </BrowserRouter>
     </ThemeProvider>
   );
