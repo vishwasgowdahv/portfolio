@@ -1,9 +1,9 @@
 # Vishwas Gowda — Full-Stack Developer
 
 <p align="center">
-  <a href="mailto:vishwasgowda722@gmail.com"><img src="https://img.shields.io/badge/Email-vishwasgowda722%40gmail.com-blue?style=flat-square&logo=gmail" alt="Email"></a>
+  <a href="mailto:vishwasgowda722@gmail.com"><img src="https://img.shields.io/badge/Email-vishwasgowda711%40gmail.com-blue?style=flat-square&logo=gmail" alt="Email"></a>
   <a href="https://github.com/vishwasgowdahv"><img src="https://img.shields.io/badge/GitHub-vishwasgowdahv-181717?style=flat-square&logo=github" alt="GitHub"></a>
-  <img src="https://img.shields.io/badge/Location-Aachen%2C%20Germany-red?style=flat-square&logo=googlemaps" alt="Location">
+  <img src="https://img.shields.io/badge/Location-Munich%2C%20Germany-red?style=flat-square&logo=googlemaps" alt="Location">
   <img src="https://img.shields.io/badge/Status-Available-green?style=flat-square" alt="Status">
 </p>
 
@@ -11,7 +11,7 @@
 
 ## 🙋‍♂️ About Me
 
-I'm a **Full-Stack Web Developer** based in Aachen, Germany. I specialize in building clean, high-performance, and scalable web applications from database architecture to frontend deployment. I focus on performance, developer experience, and shipping robust solutions. 
+I'm a **Full-Stack Web Developer** based in Munich, Germany. I specialize in building clean, high-performance, and scalable web applications from database architecture to frontend deployment. I focus on performance, developer experience, and shipping robust solutions. 
 
 * 🎓 **Master of Information Systems** — FH Aachen University, Germany *(2025–Present)*
 * 🎓 **Bachelor of Computer Science** — Visvesvaraya Technological University *(2019–2024)*
@@ -47,16 +47,7 @@ I'm a **Full-Stack Web Developer** based in Aachen, Germany. I specialize in bui
   * Containerized deployment with Docker on AWS.
 * **Links**: [Live App](https://trimmy.vishwasgowda.com) | [GitHub Repository](https://github.com/vishwasgowdahv/trimmy) | [Docker Hub Image](https://hub.docker.com/r/vishwasgowdahv/trimmy)
 
-### 2. 🍲 [Recipe Book](https://github.com/vishwasgowdahv/recipe-book) — Meal Planner App
-*A modern web application for discovering, saving, and organizing recipes.*
-* **Tech Stack**: React, TypeScript, MongoDB, Node.js, Express.js
-* **Key Features**:
-  * Structured API endpoints for meal categories and search filtering.
-  * Personalized collection saving.
-  * Responsive, clean interface for modern user experience.
-* **Links**: [Live App](https://recipe-api-frontend.netlify.app) | [GitHub Repository](https://github.com/vishwasgowdahv/recipe-book)
-
-### 3. 🗓 [WorkTrack EU](https://github.com/vishwasgowdahv/worktrack-eu) — Expat Workday Tracker
+### 2. 🗓 [WorkTrack EU](https://github.com/vishwasgowdahv/worktrack-eu) — Expat Workday Tracker
 *A utility application for international students and expats in the EU to track their working day quota.*
 * **Tech Stack**: Node.js, React, MySQL
 * **Key Features**:
@@ -119,6 +110,6 @@ To run this portfolio locally on your machine, follow these steps:
 
 ## ✉️ Get in Touch
 
-* **Email**: vishwasgowda722@gmail.com
+* **Email**: vishwasgowda711@gmail.com
 * **GitHub**: [github.com/vishwasgowdahv](https://github.com/vishwasgowdahv)
-* **Location**: Aachen, Germany
+* **Location**: Munich, Germany
