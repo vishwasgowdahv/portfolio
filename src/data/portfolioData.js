@@ -3,12 +3,12 @@ export const personalInfo = {
   title: "Full-Stack Developer",
   tagline:
     "Building things for the web — backend, frontend, and everything in between.",
-  location: "Aachen, Germany",
-  email: "vishwasgowda722@gmail.com",
+  location: "Munich, Germany",
+  email: "vishwasgowda711@gmail.com",
   github: "https://github.com/vishwasgowdahv",
   available: true,
   bio: [
-    "I'm a full-stack web developer based in Aachen, Germany — building clean, scalable web applications from database to deployment.",
+    "I'm a full-stack web developer based in Munich, Germany — building clean, scalable web applications from database to deployment.",
     "I care about performance, developer experience, and shipping things that actually work. Whether it's a REST API with rate limiting, a Deployment of scale, or a polished React UI — I like to own the whole stack.",
   ],
 };
@@ -19,8 +19,6 @@ export const techStack = [
   { name: "React", category: "Frontend" },
   { name: "JavaScript", category: "Frontend" },
   { name: "TypeScript", category: "Frontend" },
-  { name: "Django", category: "Backend" },
-  { name: "Python", category: "Backend" },
   { name: "Node.js", category: "Backend" },
   { name: "Express.js", category: "Backend" },
   { name: "REST APIs", category: "Backend" },
@@ -57,28 +55,6 @@ export const featuredProjects = [
       "Dockerized deployment on AWS",
     ],
     color: "#C4975A",
-  },
-  {
-    id: "recipe-book",
-    title: "Recipe Book",
-    subtitle: "Meal Planning and Recipes App",
-    description:
-      "Recipe Book is a modern web application for discovering, saving, and organizing recipes which helps users explore recipes by category, search for specific dishes, and save their favorites",
-    longDescription:
-      "Recipe Book helps users explore recipes by category, search for specific dishes, and save their favorites. It features a clean, responsive interface with detailed recipe views and filtering options. Implemented with Node.js backend and Express REST API, with a MongoDB database for data storage. The frontend is built with React and TypeScript, providing a seamless user experience.",
-    tags: ["React", "TypeScript", "MongoDB", "Node.js"],
-    type: "Full Stack MERN App",
-    year: "2025",
-    status: "Live",
-    liveUrl: "https://recipe-api-frontend.netlify.app",
-    githubUrl: "https://github.com/vishwasgowdahv/recipe-book",
-    dockerUrl: null,
-    highlights: [
-      "Recipe discovery and categorization",
-      "Recipe saving and organization",
-      "Search and filtering options",
-    ],
-    color: "#C8D5C0",
   },
   {
     id: "worktrack-eu",

@@ -90,7 +90,7 @@ export default function Hero() {
               letterSpacing: "0.15em",
             }}
           >
-            AACHEN, GERMANY
+            MUNICH, GERMANY
           </p>
           <p
             style={{
