@@ -59,28 +59,6 @@ export const featuredProjects = [
     color: "#C4975A",
   },
   {
-    id: "recipe-book",
-    title: "Recipe Book",
-    subtitle: "Meal Planning and Recipes App",
-    description:
-      "Recipe Book is a modern web application for discovering, saving, and organizing recipes which helps users explore recipes by category, search for specific dishes, and save their favorites",
-    longDescription:
-      "Recipe Book helps users explore recipes by category, search for specific dishes, and save their favorites. It features a clean, responsive interface with detailed recipe views and filtering options. Implemented with Node.js backend and Express REST API, with a MongoDB database for data storage. The frontend is built with React and TypeScript, providing a seamless user experience.",
-    tags: ["React", "TypeScript", "MongoDB", "Node.js"],
-    type: "Full Stack MERN App",
-    year: "2025",
-    status: "Live",
-    liveUrl: "https://recipe-api-frontend.netlify.app",
-    githubUrl: "https://github.com/vishwasgowdahv/recipe-book",
-    dockerUrl: null,
-    highlights: [
-      "Recipe discovery and categorization",
-      "Recipe saving and organization",
-      "Search and filtering options",
-    ],
-    color: "#C8D5C0",
-  },
-  {
     id: "worktrack-eu",
     title: "WorkTrack EU",
     subtitle: "Work Day Tracker for Expats",
