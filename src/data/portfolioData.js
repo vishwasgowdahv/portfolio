@@ -18,7 +18,6 @@ export const techStack = [
   { name: "Tailwind CSS", category: "Frontend" },
   { name: "React", category: "Frontend" },
   { name: "JavaScript", category: "Frontend" },
-  { name: "TypeScript", category: "Frontend" },
   { name: "Node.js", category: "Backend" },
   { name: "Express.js", category: "Backend" },
   { name: "REST APIs", category: "Backend" },

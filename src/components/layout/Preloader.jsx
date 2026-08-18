@@ -92,7 +92,8 @@ export default function Preloader({ onComplete }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
-          >· AACHEN, GERMANY
+          >
+            · MUNICH, GERMANY
           </motion.p>
         </motion.div>
       )}
