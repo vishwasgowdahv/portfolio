@@ -9,7 +9,7 @@ export const personalInfo = {
   available: true,
   bio: [
     "I'm a full-stack web developer based in Munich, Germany — building clean, scalable web applications from database to deployment.",
-    "I care about performance, developer experience, and shipping things that actually work. Whether it's a REST API with rate limiting, a Deployment of scale, or a polished React UI — I like to own the whole stack.",
+    "I care about performance, developer experience, and shipping things that actually work. Whether it's a REST API with rate limiting, a Deployment of scale, or a polished React UI — I like to own the whole stack."
   ],
 };
 
@@ -46,12 +46,35 @@ export const featuredProjects = [
     status: "Live",
     liveUrl: "https://trimmy.vishwasgowda.com",
     githubUrl: "https://github.com/vishwasgowdahv/trimmy",
-    dockerUrl: "https://hub.docker.com/r/vishwasgowdahv/trimmy",
+    dockerUrl: ["https://hub.docker.com/r/vishwasgowdahv/trimmy-frontend", "https://hub.docker.com/r/vishwasgowdahv/trimmy-backend"],
     highlights: [
       "JWT auth with refresh tokens",
       "Per-user rate limiting middleware",
       "Click analytics dashboard",
       "Dockerized deployment on AWS",
+    ],
+    color: "#C4975A",
+  },
+  {
+    id: "news",
+    title: "NEWS WEBAPP",
+    subtitle: "A Short Daily News Application",
+    description:
+      "A fast, modern, and responsive news application built with React and Vite. Stay updated with the latest headlines across various categories.",
+    longDescription:
+      "A fast, responsive news application built with React 19 and Vite. It features categorized news, search functionality, infinite scrolling, and secure API handling using Vercel Serverless Functions to proxy NewsAPI requests and hide API keys, Deployed in Vercel and Docker",
+    tags: ["React", "Tailwind", "Docker", "Proxy"],
+    type: "Web Application",
+    year: "2025",
+    status: "Live",
+    liveUrl: "https://news.vishwasgowda.com",
+    githubUrl: "https://github.com/vishwasgowdahv/news_webapp",
+    dockerUrl: "https://hub.docker.com/r/vishwasgowdahv/news-webapp",
+    highlights: [
+      "Secure API handling with Vercel Serverless Functions",
+      "Infinite scrolling for seamless reading",
+      "Categorized news and search functionality",
+      "Fully responsive UI with Tailwind CSS v4"
     ],
     color: "#C4975A",
   },
@@ -97,7 +120,7 @@ export const smallProjects = [
     title: "Password Generator",
     description:
       "A configurable password generator with strength meter, copy to clipboard, and custom character sets.",
-    tags: ["React"],
+    tags: ["React", "JavaScript"],
     year: "2023",
     liveUrl: "https://vishwasgowdahv.github.io/password_generator/",
     githubUrl: "https://github.com/vishwasgowdahv/password_generator",

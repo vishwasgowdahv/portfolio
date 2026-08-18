@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { featuredProjects } from '../data/portfolioData';
@@ -7,11 +8,11 @@ import Footer from '../components/layout/Footer';
 function LinkCard({ href, icon, label, sublabel, available = true }) {
   if (!available || !href) {
     return (
-      <div style={{ padding: '1rem 1.25rem', border: '1px solid var(--border)', borderRadius: '4px', background: 'var(--card)', opacity: 0.4, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <span style={{ fontSize: '1.1rem' }}>{icon}</span>
+      <div style={{ padding: '0.6rem 0.8rem', border: '1px solid var(--border)', borderRadius: '4px', background: 'var(--card)', opacity: 0.4, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <span style={{ fontSize: '1rem' }}>{icon}</span>
         <div>
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', color: 'var(--fg)', fontWeight: 500 }}>{label}</p>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.62rem', color: 'var(--muted)', marginTop: '2px' }}>Not available</p>
+          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: 'var(--fg)', fontWeight: 500 }}>{label}</p>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.55rem', color: 'var(--muted)', marginTop: '2px' }}>Not available</p>
         </div>
       </div>
     );
@@ -22,16 +23,16 @@ function LinkCard({ href, icon, label, sublabel, available = true }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      style={{ padding: '1rem 1.25rem', border: '1px solid var(--border)', borderRadius: '4px', background: 'var(--card)', display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'border-color 0.2s ease, transform 0.2s ease', cursor: 'pointer' }}
+      style={{ padding: '0.6rem 0.8rem', border: '1px solid var(--border)', borderRadius: '4px', background: 'var(--card)', display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'border-color 0.2s ease, transform 0.2s ease', cursor: 'pointer' }}
       onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
       onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'translateY(0)'; }}
     >
-      <span style={{ fontSize: '1.1rem', flexShrink: 0 }}>{icon}</span>
+      <span style={{ fontSize: '1rem', flexShrink: 0 }}>{icon}</span>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', color: 'var(--fg)', fontWeight: 500 }}>{label}</p>
-        <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: 'var(--muted)', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{sublabel}</p>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: 'var(--fg)', fontWeight: 500 }}>{label}</p>
+        <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.55rem', color: 'var(--muted)', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{sublabel}</p>
       </div>
-      <span style={{ color: 'var(--accent)', fontSize: '0.9rem', flexShrink: 0 }}>↗</span>
+      <span style={{ color: 'var(--accent)', fontSize: '0.8rem', flexShrink: 0 }}>↗</span>
     </a>
   );
 }
@@ -91,29 +92,65 @@ export default function ProjectDetail() {
 
           <div className="h-line" style={{ marginBottom: '2.5rem' }} />
 
-          {/* ── Links grid ─────────────────────────────── */}
-          <div className="detail-links" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.75rem', marginBottom: '2.5rem' }}>
-            <LinkCard
-              href={project.liveUrl}
-              icon="🌐"
-              label="Live Site"
-              sublabel={project.liveUrl ? project.liveUrl.replace('https://', '') : ''}
-              available={!!project.liveUrl}
-            />
-            <LinkCard
-              href={project.githubUrl}
-              icon="🐙"
-              label="GitHub Repository"
-              sublabel={project.githubUrl ? project.githubUrl.replace('https://github.com/', '') : ''}
-              available={!!project.githubUrl}
-            />
-            <LinkCard
-              href={project.dockerUrl}
-              icon="🐳"
-              label="Docker Hub"
-              sublabel={project.dockerUrl ? project.dockerUrl.replace('https://hub.docker.com/r/', '') : ''}
-              available={!!project.dockerUrl}
-            />
+          {/* ── Links Sections ─────────────────────────────── */}
+          <div className="project-resources" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2.5rem', alignItems: 'start' }}>
+            
+            {/* Live Section */}
+            {project.liveUrl && (
+              <div className="resource-section">
+                <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.9rem', color: 'var(--fg)', marginBottom: '0.8rem', fontWeight: 600 }}>Live Environment</h3>
+                <LinkCard
+                  href={project.liveUrl}
+                  icon="🌐"
+                  label="Visit Live Site"
+                  sublabel={project.liveUrl.replace('https://', '')}
+                />
+              </div>
+            )}
+
+            {/* GitHub Section */}
+            {project.githubUrl && (
+              <div className="resource-section">
+                <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.9rem', color: 'var(--fg)', marginBottom: '0.8rem', fontWeight: 600 }}>Source Code</h3>
+                <LinkCard
+                  href={project.githubUrl}
+                  icon="🐙"
+                  label="GitHub Repository"
+                  sublabel={project.githubUrl.replace('https://github.com/', '')}
+                />
+              </div>
+            )}
+
+            {/* Docker Section */}
+            {project.dockerUrl && (
+              <div className="resource-section">
+                <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.9rem', color: 'var(--fg)', marginBottom: '0.8rem', fontWeight: 600 }}>Docker Images</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {Array.isArray(project.dockerUrl) ? (
+                    project.dockerUrl.map((url, i) => {
+                      const imageName = url.replace('https://hub.docker.com/r/', '').replace(/\/$/, '');
+                      return (
+                        <LinkCard
+                          key={i}
+                          href={url}
+                          icon="🐳"
+                          label={`Docker Hub (${imageName.split('/')[1] || imageName})`}
+                          sublabel={imageName}
+                        />
+                      );
+                    })
+                  ) : (
+                    <LinkCard
+                      href={project.dockerUrl}
+                      icon="🐳"
+                      label="Docker Hub"
+                      sublabel={project.dockerUrl.replace('https://hub.docker.com/r/', '').replace(/\/$/, '')}
+                    />
+                  )}
+                </div>
+              </div>
+            )}
+            
           </div>
 
           <div className="h-line" style={{ marginBottom: '2.5rem' }} />
